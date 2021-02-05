@@ -39,13 +39,12 @@ meme_schema = MemeSchema()
 memes_schema = MemeSchema(many=True)
 
 # Create a Meme
-@app.route('/meme', methods=['POST'])
+@app.route('/memes', methods=['POST'])
 def add_meme():
   name = request.json['name']
   url = request.json['url']
   caption = request.json['caption']
   date = datetime.datetime.now().strftime("%b-%d-%Y, %H:%M")
-  print("dddddddddddddddddd")
   print(date)
 
   new_meme = Meme(name, url, caption, date)
@@ -56,21 +55,24 @@ def add_meme():
   return meme_schema.jsonify(new_meme)
 
 # Get All Memes
-@app.route('/meme', methods=['GET'])
+@app.route('/memes', methods=['GET'])
 def get_memes():
   all_memes = Meme.query.all()
   result = memes_schema.dump(all_memes)
+  result = result[::-1]
+  if len(result) > 100:
+    result = result[:100]
   print(result)
   return jsonify(result)
 
 # Get Single Memes
-@app.route('/meme/<id>', methods=['GET'])
+@app.route('/memes/<id>', methods=['GET'])
 def get_meme(id):
   meme = Meme.query.get(id)
   return meme_schema.jsonify(meme)
 
 # Update a Meme
-@app.route('/meme/<id>', methods=['PUT'])
+@app.route('/memes/<id>', methods=['PUT'])
 def update_meme(id):
   meme = Meme.query.get(id)
 
@@ -87,7 +89,7 @@ def update_meme(id):
   return meme_schema.jsonify(meme)
 
 # Delete Meme
-@app.route('/meme/<id>', methods=['DELETE'])
+@app.route('/memes/<id>', methods=['DELETE'])
 def delete_meme(id):
   meme = Meme.query.get(id)
   db.session.delete(meme)

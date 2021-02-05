@@ -8,8 +8,10 @@
 # Activate venv
 $ python -m venv env
 
+Activate the created environment now
+
 # Install dependencies
-$ pipenv install
+$ pip install -r requirements.txt
 
 # Create DB
 $ python

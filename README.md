@@ -15,12 +15,12 @@ $ pip install -r requirements.txt
 
 # Create DB
 $ python
->> from app import db
+>> from main import db
 >> db.create_all()
 >> exit()
 
 # Run Server (http://localhst:5000)
-python app.py
+python main.py
 ```
 
 ## Endpoints

@@ -8,7 +8,7 @@ const Meme = props => {
     <div className="col-md-6">
       <div className="card mb-4 shadow-sm">
         <div className="card-body">
-          <p className="card-text">
+          <p className="card-text" style={{textAlign: 'center'}}>
             <strong>
               <i className="fas fa-user" /> Creator
             </strong>
@@ -20,7 +20,7 @@ const Meme = props => {
             : {meme.caption}
           </p>
           <Link to={`meme/${meme.id}`}>
-            <img src={meme.url} className="img-fluid" />
+            <img src={meme.url} className="img-fluid" style={{width: '100%', height: '100%'}} />
           </Link>
           <Link
             to={`meme/${meme.id}`}

@@ -118,6 +118,31 @@ def update_meme(id):
 
   return meme_schema.jsonify(meme)
 
+# Patch a Meme
+@app.route('/memes/<id>', methods=['PATCH'])
+def patch_meme(id):
+  meme = Meme.query.get(id)
+
+  if meme is None:
+    result = {
+      "error": "Id not found"
+    }
+    return jsonify(result), 404
+
+  if "name" in request.json:
+    result = {
+      "error": "Name field cannot be modified"
+    }
+    return jsonify(result), 403
+  if "url" in request.json:
+    meme.url = request.json['url']
+  if "caption" in request.json:
+    meme.caption = request.json['caption']
+
+  db.session.commit()
+
+  return meme_schema.jsonify(meme)
+
 # Delete Meme
 @app.route('/memes/<id>', methods=['DELETE'])
 def delete_meme(id):

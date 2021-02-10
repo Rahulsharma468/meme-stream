@@ -7,5 +7,6 @@ export const imageExists = (url, callback) => {
     img.src = url;
 }
 
-export const serverUrl = `http://ec2-13-58-184-139.us-east-2.compute.amazonaws.com:3000`;
+// export const serverUrl = `http://ec2-13-58-184-139.us-east-2.compute.amazonaws.com:3000`;
+export const serverUrl = `https://cors-anywhere.herokuapp.com/http://ec2-13-58-184-139.us-east-2.compute.amazonaws.com:3000`;
 // export const serverUrl = `http://localhost:5000`;

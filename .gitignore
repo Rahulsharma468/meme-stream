@@ -1,5 +1,6 @@
 env/
 client/node_modules
+client/build
 .DS_Store
 *.pyc
 *.pyo
